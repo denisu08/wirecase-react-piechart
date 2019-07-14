@@ -36,13 +36,14 @@ export default class App extends Component {
   render() {
     return (
       <center>
+        <h1>Wirecase React JSON Viewer Demo</h1>
         <div style={{ display: 'table-row' }}>
-          <h1>Wirecase React JSON Viewer Demo</h1>
           <PieChart
             data={data}
             expandedSector={this.state.expandedSector}
             onMouseEnterOnSector={this.handleMouseEnterOnSector}
             onMouseLeaveFromSector={this.handleMouseLeaveFromSector}
+            props={{ height: 200, width: 200 }}
           />
           <div
             style={{
