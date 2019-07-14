@@ -38,6 +38,7 @@
     "build": "babel src --out-dir lib --copy-files",
     "watch": "npm run build -- --watch",
     "lint": "eslint src/",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "deploy": "gh-pages -d example/build"
   }
 }
