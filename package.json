@@ -28,6 +28,7 @@
     "react": "^0.14.0"
   },
   "devDependencies": {
+    "gh-pages": "^1.2.0",
     "babel": "^5.4.5",
     "babel-eslint": "^3.1.5",
     "eslint": "^0.21.1",
@@ -39,6 +40,7 @@
     "watch": "npm run build -- --watch",
     "lint": "eslint src/",
     "prepublish": "npm run clean && npm run build",
+    "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   }
 }

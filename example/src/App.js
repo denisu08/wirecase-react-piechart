@@ -4,32 +4,68 @@ import Gist from 'react-gist';
 import PieChart from 'wirecase-react-piechart';
 
 const data = [
-  { title: 'Data 1', value: 100, color: '#22594e' },
-  { title: 'Data 2', value: 60, color: '#2f7d6d' },
-  { title: 'Data 3', value: 30, color: '#3da18d' },
-  { title: 'Data 4', value: 20, color: '#69c2b0' },
-  { title: 'Data 5', value: 10, color: '#a1d9ce' }
+  { label: 'Facebook', value: 100, color: '#3b5998' },
+  { label: 'Twitter', value: 60, color: '#00aced' },
+  { label: 'Google Plus', value: 30, color: '#dd4b39' },
+  { label: 'Pinterest', value: 20, color: '#cb2027' },
+  { label: 'Linked In', value: 10, color: '#007bb6' }
 ];
 
 export default class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      expandedSector: null
+    };
+
+    this.handleMouseEnterOnSector = this.handleMouseEnterOnSector.bind(this);
+    this.handleMouseLeaveFromSector = this.handleMouseLeaveFromSector.bind(
+      this
+    );
+  }
+
+  handleMouseEnterOnSector(sector) {
+    this.setState({ expandedSector: sector });
+  }
+
+  handleMouseLeaveFromSector() {
+    this.setState({ expandedSector: null });
+  }
+
   render() {
     return (
-      <div>
-        <h1>Wirecase React Piechart Viewer Demo</h1>
-        <PieChart
-          data={data}
-          // If you need expand on hover (or touch) effect
-          expandOnHover
-          // If you need custom behavior when sector is hovered (or touched)
-          onSectorHover={(d, i, e) => {
-            if (d) {
-              console.log('Mouse enter - Index:', i, 'Data:', d, 'Event:', e);
-            } else {
-              console.log('Mouse leave - Index:', i, 'Event:', e);
-            }
-          }}
-        />
-      </div>
+      <center>
+        <div style={{ display: 'table-row' }}>
+          <h1>Wirecase React JSON Viewer Demo</h1>
+          <PieChart
+            data={data}
+            expandedSector={this.state.expandedSector}
+            onMouseEnterOnSector={this.handleMouseEnterOnSector}
+            onMouseLeaveFromSector={this.handleMouseLeaveFromSector}
+          />
+          <div
+            style={{
+              display: 'table-cell',
+              verticalAlign: 'middle',
+              textAlign: 'left'
+            }}
+          >
+            {data.map((d, i) => (
+              <div key={i}>
+                <span style={{ background: d.color }} />
+                <span
+                  style={{
+                    fontWeight: this.state.expandedSector == i ? 'bold' : null
+                  }}
+                >
+                  {d.label} : {d.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </center>
     );
   }
 }

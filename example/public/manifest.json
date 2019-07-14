@@ -1,6 +1,6 @@
 {
-  "short_name": "wirecase-react-jsonviewer",
-  "name": "wirecase-react-jsonviewer",
+  "short_name": "wirecase-react-piechart",
+  "name": "wirecase-react-piechart",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
